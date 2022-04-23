@@ -22,6 +22,8 @@ public class CarName {
             throw new IllegalArgumentException("자동차의 이름이 필요해요.");
         if (name.length() > MAX_LENGTH)
             throw new IllegalArgumentException("자동차 이름은 5자 이내 이어야 해요.");
+        if (Pattern.compile("\\s\\S").matcher(name).find())
+            throw new IllegalArgumentException("자동차 이름에 공백은 없어야 해요.");
         if (Pattern.matches("(.*)[" + NOT_CONTAIN_CHAR + "](.*)", name))
             throw new IllegalArgumentException("자동차 이름에 " + NOT_CONTAIN_CHAR + " 는 사용할 수 없어요.");
     }

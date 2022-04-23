@@ -37,6 +37,16 @@ public class CarNameTest {
     }
 
     @Test
+    @DisplayName("공백을 포함했을 때, 오류가 발생하는가")
+    void error_contain_whitespace() {
+        assertThatExceptionOfType(IllegalArgumentException.class)
+            .isThrownBy(() -> {
+                CarName name = new CarName(" abc");
+            })
+            .withMessageMatching("자동차 이름에 공백은 없어야 해요.");
+    }
+
+    @Test
     @DisplayName("이름이 없을 때, 오류가 발생하는가")
     void error_empty() {
         assertThatExceptionOfType(IllegalArgumentException.class)
