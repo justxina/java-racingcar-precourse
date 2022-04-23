@@ -1,0 +1,16 @@
+name: Code Format
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  check_format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: axel-op/googlejavaformat-action@v3
+        with:
+          githubToken: ${{secrets.TOKEN}}
+          version: "1.8"
+          args: "--aosp"
