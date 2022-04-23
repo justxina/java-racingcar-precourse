@@ -3,6 +3,7 @@
 ### 자동차는 이름을 가진다. [#1](https://github.com/justxina/java-racingcar-precourse/issues/1) 
 - 이름은 5자 이하만 가능하다.
 - 이름을 출력할 수 있다.
+- 사용자가 여러 대의 자동차 이름을 입력할 때 구분자로 사용하는 문자(,)는 자동차 이름에 포함되어서는 안 된다.
 
 ### 레이스에 참가하는 자동차(이하 "레이싱 카")가 있다. [#2](https://github.com/justxina/java-racingcar-precourse/issues/2)
 - 레이싱카는 레이스를 할 수 있다.
