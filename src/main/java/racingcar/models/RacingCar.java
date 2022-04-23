@@ -18,10 +18,10 @@ public class RacingCar {
         return this.car.getName();
     }
 
-    public RaceRecord race() {
+    public RaceResult race() {
         if (pickNumberInRange(MIN_RANGE, MAX_RANGE) >= MIN_FOR_GO)
-            return RaceRecord.GO;
-        return RaceRecord.STOP;
+            return RaceResult.GO;
+        return RaceResult.STOP;
     }
 
 }

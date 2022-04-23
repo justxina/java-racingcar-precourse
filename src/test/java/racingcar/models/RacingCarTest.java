@@ -32,13 +32,13 @@ public class RacingCarTest {
     @DisplayName("레이싱카는 레이스를 할 수 있다: 전진하거나 혹은 멈출 수 있다.")
     void race() {
         randomUtils = mockStatic(Randoms.class);
-        assertThat(RaceRecord.values()).contains(racingCar.race());
+        assertThat(RaceResult.values()).contains(racingCar.race());
 
         when(Randoms.pickNumberInRange(anyInt(), anyInt())).thenReturn(4);
-        assertThat(racingCar.race()).isEqualTo(RaceRecord.GO);
+        assertThat(racingCar.race()).isEqualTo(RaceResult.GO);
 
         when(Randoms.pickNumberInRange(anyInt(), anyInt())).thenReturn(3);
-        assertThat(racingCar.race()).isEqualTo(RaceRecord.STOP);
+        assertThat(racingCar.race()).isEqualTo(RaceResult.STOP);
     }
 
 
