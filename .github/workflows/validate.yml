@@ -5,7 +5,7 @@ on:
     branches: [ master ]
 
 jobs:
-  check_format:
+  check_jdk_version:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -13,14 +13,19 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 1.8
+  test:
+    runs-on: ubuntu-latest
+    steps:
       - name: Grant execute permission for gradlew
         run: chmod +x gradlew
       - name: Test with Gradle
         run: ./gradlew clean test
+  check_code_format:
+    runs-on: ubuntu-latest
+    steps:
       - uses: axel-op/googlejavaformat-action@v3
         name: Code Format google-java-style
         with:
           githubToken: ${{secrets.TOKEN}}
           version: "1.8"
           args: "--aosp"
-    
