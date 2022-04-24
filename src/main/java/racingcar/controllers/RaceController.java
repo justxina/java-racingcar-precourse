@@ -8,6 +8,8 @@ import racingcar.common.exceptions.IllegalArgumentException;
 import racingcar.common.exceptions.IllegalStateException;
 import racingcar.models.Car;
 import racingcar.models.Racing;
+import racingcar.models.RacingCar;
+import racingcar.models.RacingCarStepView;
 import racingcar.models.RacingCars;
 import racingcar.models.RacingTurn;
 
@@ -34,6 +36,16 @@ public class RaceController {
         return turn;
     }
 
+    @Description("레이싱 경기 개최")
+    public void hold(RacingCars cars, RacingTurn turn) {
+        Racing racing = new Racing(cars, turn);
+        this.race(racing);
+
+        System.out.println("");
+        System.out.println("최종 우승자: " + String.join(", ", this.getWinnerNames(racing)));
+    }
+
+
 
     @Description("사용자에게 자동차 이름을 입력받고, 이름이 올바르지 않을 때는 유효성 검사 결과를 알려줌")
     private RacingCars entryCars() {
@@ -57,6 +69,36 @@ public class RaceController {
         return null;
     }
 
+    @Description("레이싱 턴마다 실행 결과 출력")
+    private void race(Racing racing) {
+        System.out.println("");
+        System.out.println("실행 결과");
+
+        for (int turn = 1; turn <= racing.getTurnCount(); turn += 1) {
+            racing.race(turn);
+            this.stepsByCar(racing);
+            System.out.println("");
+        }
+    }
+
+    @Description("자동차 별 실행 결과 출력")
+    private void stepsByCar(Racing racing) {
+        for (RacingCar car : racing.getCars().get()) {
+            RacingCarStepView carStepView = new RacingCarStepView(car, racing.getStepsByRacingCar(car.getName()));
+            System.out.println(carStepView.getCarName() + " : " + carStepView.getStepString());
+        }
+    }
+
+    @Description("최종 우승자 이름 목록을 가져옴")
+    private List<String> getWinnerNames(Racing racing) {
+        List<String> winnerNames = new ArrayList<>();
+        for (RacingCar winner: racing.getWinners()) {
+            winnerNames.add(winner.getName());
+        }
+        return winnerNames;
+    }
+
+
     private static List<Car> mapToCars(String carNames) {
         List<Car> cars = new ArrayList<>();
         for (String name : carNames.split(",")) {
@@ -64,5 +106,4 @@ public class RaceController {
         }
         return cars;
     }
-
 }

@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map.Entry;
 import jdk.jfr.Description;
+import racingcar.common.exceptions.IllegalStateException;
 
 public class Racing {
 
@@ -14,21 +15,21 @@ public class Racing {
     private final RacingCars cars;
     private final RaceRecords records;
 
-    public Racing(List<Car> cars, RacingTurn racingTurn) {
-        this.cars = new RacingCars(cars);
+    public Racing(RacingCars cars, RacingTurn racingTurn) {
+        this.cars = cars;
         this.turnCount = racingTurn;
         this.records = new RaceRecords();
     }
 
-    @Description("전체 턴의 레이스가 이루어짐")
-    public void race() {
-        for (int turn = 1; turn <= this.turnCount.get(); turn += 1) {
-            this.race(turn);
-        }
+    public int getTurnCount() {
+        return this.turnCount.get();
+    }
+    public RacingCars getCars() {
+        return this.cars;
     }
 
     @Description("한 턴의 레이스가 이루어짐")
-    private void race(int turn) {
+    public void race(int turn) {
         for (RacingCar car: this.cars.get()) {
             this.records.add(
                 new RaceRecord(turn, car, car.race())
@@ -56,6 +57,9 @@ public class Racing {
         return winners;
     }
 
+    public Integer getStepsByRacingCar(String carName) {
+        return this.records.getStepsByCarName(carName);
+    }
 
     private HashMap<RacingCar, Integer> getStepsByRacingCar() {
         HashMap<RacingCar, Integer> stepsByCarName = new HashMap<>();
