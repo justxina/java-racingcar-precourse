@@ -1,6 +1,7 @@
 package racingcar.models;
 
 import java.util.regex.Pattern;
+import racingcar.common.exceptions.IllegalArgumentException;
 
 public class CarName {
 

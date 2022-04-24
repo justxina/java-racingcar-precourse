@@ -2,6 +2,7 @@ package racingcar.models;
 
 import java.util.ArrayList;
 import java.util.List;
+import racingcar.common.exceptions.IllegalArgumentException;
 
 public class RacingCars {
 

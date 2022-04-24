@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.common.exceptions.IllegalArgumentException;
 
 public class CarNameTest {
 
@@ -33,7 +34,8 @@ public class CarNameTest {
             .isThrownBy(() -> {
                 CarName name = new CarName("일이삼사오육");
             })
-            .withMessageMatching("자동차 이름은 5자 이내 이어야 해요.");
+            .withMessageContaining("자동차 이름은 5자 이내 이어야 해요.")
+            .withMessageContaining("[ERROR]");
     }
 
     @Test
@@ -43,7 +45,8 @@ public class CarNameTest {
             .isThrownBy(() -> {
                 CarName name = new CarName(" abc");
             })
-            .withMessageMatching("자동차 이름에 공백은 없어야 해요.");
+            .withMessageContaining("자동차 이름에 공백은 없어야 해요.")
+            .withMessageContaining("[ERROR]");
     }
 
     @Test
@@ -53,7 +56,8 @@ public class CarNameTest {
             .isThrownBy(() -> {
                 CarName name = new CarName("");
             })
-            .withMessageMatching("자동차의 이름이 필요해요.");
+            .withMessageContaining("자동차의 이름이 필요해요.")
+            .withMessageContaining("[ERROR]");
 
     }
 }
