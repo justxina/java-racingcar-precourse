@@ -14,9 +14,9 @@ public class Racing {
     private final RacingCars cars;
     private final RaceRecords records;
 
-    public Racing(List<Car> cars, String turnCount) {
+    public Racing(List<Car> cars, RacingTurn racingTurn) {
         this.cars = new RacingCars(cars);
-        this.turnCount = new RacingTurn(turnCount);
+        this.turnCount = racingTurn;
         this.records = new RaceRecords();
     }
 

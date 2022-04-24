@@ -22,7 +22,7 @@ public class RacingTest {
         for (String name: carNames) {
             cars.add(new Car(name));
         }
-        racing = new Racing(cars, "5");
+        racing = new Racing(cars, new RacingTurn("5"));
     }
 
     @Test

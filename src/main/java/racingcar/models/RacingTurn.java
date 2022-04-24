@@ -1,5 +1,7 @@
 package racingcar.models;
 
+import racingcar.common.exceptions.IllegalArgumentException;
+
 public class RacingTurn {
 
     private final int turnCount;

@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.common.exceptions.IllegalArgumentException;
 
 public class RacingTurnTest {
 
@@ -20,7 +21,8 @@ public class RacingTurnTest {
             .isThrownBy(() -> {
                 RacingTurn racingTurn = new RacingTurn("0");
             })
-            .withMessageMatching("1 이상의 턴 수를 입력해주세요.");
+            .withMessageContaining("1 이상의 턴 수를 입력해주세요.")
+            .withMessageContaining("[ERROR]");
     }
 
     @Test
@@ -30,6 +32,7 @@ public class RacingTurnTest {
             .isThrownBy(() -> {
                 RacingTurn racingTurn = new RacingTurn("zero");
             })
-            .withMessageMatching("턴 수를 숫자로 입력해주세요.");
+            .withMessageContaining("턴 수를 숫자로 입력해주세요.")
+            .withMessageContaining("[ERROR]");
     }
 }
